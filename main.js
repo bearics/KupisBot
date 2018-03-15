@@ -52,12 +52,17 @@ app.post('/message', function(req, res) {
 			//	console.log(body);
 			$ = cheerio.load(body);
 	
-			sendqr = $('#QRAscii').text().split(' ').join('+');
+			sendqr = $('#QRImage>img').attr("src");
 			console.log(sendqr);
 		        let send = {
 	                "message" : {
-		                        "text" : sendqr
-		                }
+		                        "text" : "남용하지마세요",
+					"photo": {
+						"url": sendqr,
+						"width":400,
+						"height":400
+					},
+		        }
 		        }
      			      res.set({
 			     'content-type' : 'application/json'
